@@ -71,7 +71,7 @@ function Dashboard(){
             <header>
 
                 <h1>
-                    🏥 Sahara Hospital
+                    Sahara Hospital
                 </h1>
 
                 <h3>

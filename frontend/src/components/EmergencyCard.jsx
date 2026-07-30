@@ -4,25 +4,25 @@ function EmergencyCard({ user, resolve }) {
         <div className="card">
 
             <div className="alert">
-                🚨 EMERGENCY
+                EMERGENCY
             </div>
 
             <h2>{user.name}</h2>
 
             <p>
-                📞 {user.phone}
+                {user.phone}
             </p>
 
             <p>
-                🩸 Blood Group: {user.bloodGroup}
+                Blood Group: {user.bloodGroup}
             </p>
 
             <p>
-                🎂 Age: {user.age}
+                Age: {user.age}
             </p>
 
             <p>
-                📍 {user.address}
+                {user.address}
             </p>
 
 
@@ -31,7 +31,7 @@ function EmergencyCard({ user, resolve }) {
                 <a 
                 href={`tel:${user.phone}`}
                 className="call">
-                    📞 Call
+                    Call
                 </a>
 
 
@@ -39,7 +39,7 @@ function EmergencyCard({ user, resolve }) {
                 onClick={() => resolve(user.uid)}
                 className="resolve">
 
-                    ✔ Resolve
+                    Resolve
 
                 </button>
 
