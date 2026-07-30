@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "738781721168",
+    "firebase_url": "https://sahara-b7c52-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "sahara-b7c52",
+    "storage_bucket": "sahara-b7c52.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:738781721168:android:629ad2bd9e50d1c3a79755",
+        "android_client_info": {
+          "package_name": "nexora.punya.sahara"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAv_p3WdbdI9CaQk71VldHHHp3UJOZsUiU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
