@@ -2,22 +2,22 @@ import { useEffect, useState } from "react";
 import api from "../services/api";
 import EmergencyCard from "../components/EmergencyCard";
 
+function Dashboard() {
 
-function Dashboard(){
-
-    const [requests,setRequests] = useState([]);
+    const [requests, setRequests] = useState([]);
 
 
-    const getRequests = async()=>{
+    const getRequests = async () => {
 
-        try{
+        try {
 
             const response = await api.get("/requests");
 
             setRequests(response.data);
 
-        }
-        catch(error){
+        } 
+        
+        catch (error) {
 
             console.log(error);
 
@@ -26,16 +26,17 @@ function Dashboard(){
     };
 
 
-    const resolveRequest = async(uid)=>{
+    const resolveRequest = async (uid) => {
 
-        try{
+        try {
 
             await api.post(`/resolve/${uid}`);
 
             getRequests();
 
-        }
-        catch(error){
+        } 
+        
+        catch (error) {
 
             console.log(error);
 
@@ -44,26 +45,26 @@ function Dashboard(){
     };
 
 
-    useEffect(()=>{
+    useEffect(() => {
 
         getRequests();
 
 
-        const interval = setInterval(()=>{
+        const interval = setInterval(() => {
 
             getRequests();
 
-        },5000);
+        }, 5000);
 
 
-        return ()=>clearInterval(interval);
+        return () => clearInterval(interval);
 
 
-    },[]);
+    }, []);
 
 
 
-    return(
+    return (
 
         <div className="dashboard">
 
@@ -74,9 +75,11 @@ function Dashboard(){
                     Sahara Hospital
                 </h1>
 
+
                 <h3>
                     Active Emergencies : {requests.length}
                 </h3>
+
 
             </header>
 
@@ -85,30 +88,31 @@ function Dashboard(){
             <div className="container">
 
 
-            {
-                requests.length === 0 ?
+                {
+                    requests.length === 0 ?
 
-                <h2>
-                    No Emergency Requests
-                </h2>
+                    <h2>
+                        No Emergency Requests
+                    </h2>
 
 
-                :
+                    :
 
-                requests.map((user)=>(
+                    requests.map((user) => (
 
-                    <EmergencyCard
+                        <EmergencyCard
 
-                    key={user.uid}
+                            key={user.uid}
 
-                    user={user}
+                            user={user}
 
-                    resolve={resolveRequest}
+                            resolve={resolveRequest}
 
-                    />
+                        />
 
-                ))
-            }
+                    ))
+
+                }
 
 
             </div>
@@ -116,7 +120,7 @@ function Dashboard(){
 
         </div>
 
-    )
+    );
 
 }
 

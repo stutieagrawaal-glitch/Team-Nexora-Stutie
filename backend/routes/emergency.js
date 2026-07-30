@@ -4,7 +4,6 @@ const { database, firestore } = require("../firebase");
 router.get("/requests", async (req, res) => {
     try {
         const snapshot = await database.ref("users").get();
-
         const requests = snapshot.val();
 
         if (!requests) {
@@ -15,7 +14,7 @@ router.get("/requests", async (req, res) => {
 
         for (const uid in requests) {
 
-            if (requests[uid].NeedHelp === true) {
+            if (requests[uid].needHelp === true) {
 
                 const doc = await firestore
                     .collection("users")
@@ -23,11 +22,21 @@ router.get("/requests", async (req, res) => {
                     .get();
 
                 if (doc.exists) {
+                    const patient = doc.data();
+
+                    console.log(patient);
+
                     emergencyUsers.push({
+
                         uid,
-                        ...doc.data(),
+                        name: patient.fullName,
+                        age: patient.age,
+                        bloodGroup: patient.bloodGroup,
+                        phone: patient.phoneNumber,
+                        medicalHistory: patient.medicalHistory || [],
                         timestamp: requests[uid].timestamp
-                    });
+
+});
                 }
             }
         }
@@ -46,7 +55,7 @@ router.post("/resolve/:uid", async (req, res) => {
     try {
 
         await database.ref("users/" + req.params.uid).update({
-            NeedHelp: false
+            needHelp: false
         });
 
         res.json({
