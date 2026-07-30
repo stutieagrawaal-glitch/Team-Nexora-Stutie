@@ -1,105 +1,188 @@
-import React from "react";
+import {
+  FaUser,
+  FaPhoneAlt,
+  FaTint,
+  FaBirthdayCake,
+  FaFileMedical,
+  FaUserMd,
+  FaCalendarAlt,
+  FaNotesMedical,
+} from "react-icons/fa";
 
-function PatientHistory({ patient }) {
-
-  if (!patient) {
-    return (
-      <div className="patient-history">
-        <h3>Patient History</h3>
-        <p>No patient data available</p>
-      </div>
-    );
-  }
-
+function PatientHistory({ patient, onClose }) {
+  if (!patient) return null;
 
   return (
-    <div className="patient-history">
+    <div className="history-overlay">
 
-      <h2>Patient Medical History</h2>
+      <div className="history-modal">
 
-      <div className="patient-info">
+        <div className="history-header">
 
-        <p>
-          <strong>Name:</strong> {patient.fullName || "N/A"}
-        </p>
+          <h2>
+            <FaFileMedical /> Patient Medical History
+          </h2>
 
-        <p>
-          <strong>Age:</strong> {patient.age || "N/A"}
-        </p>
+          <button
+            className="close-btn"
+            onClick={onClose}
+          >
+            ✕
+          </button>
 
-        <p>
-          <strong>Gender:</strong> {patient.gender || "N/A"}
-        </p>
+        </div>
 
-        <p>
-          <strong>Blood Group:</strong> {patient.bloodGroup || "N/A"}
-        </p>
+        {/* Patient Information */}
 
-        <p>
-          <strong>Phone:</strong> {patient.phoneNumber || "N/A"}
-        </p>
+        <div className="patient-profile">
 
-        <p>
-          <strong>Allergies:</strong> {patient.allergies || "None"}
-        </p>
+          <div className="profile-avatar">
+            {patient.fullName
+              ? patient.fullName.charAt(0).toUpperCase()
+              : "P"}
+          </div>
 
-      </div>
+          <div>
 
+            <h3>{patient.fullName}</h3>
 
-      <h3>Previous Medical Records</h3>
-
-
-      {
-        patient.medicalHistory &&
-        patient.medicalHistory.length > 0 ? (
-
-          <div className="history-list">
-
-            {
-              patient.medicalHistory.map((record,index)=>(
-
-                <div 
-                  className="history-card"
-                  key={index}
-                >
-
-                  <p>
-                    <strong>Disease:</strong> 
-                    {record.disease}
-                  </p>
-
-                  <p>
-                    <strong>Doctor:</strong>
-                    {record.doctor}
-                  </p>
-
-                  <p>
-                    <strong>Date:</strong>
-                    {record.date}
-                  </p>
-
-                  <p>
-                    <strong>Treatment:</strong>
-                    {record.treatment}
-                  </p>
-
-
-                </div>
-
-              ))
-            }
+            <p>Emergency Patient</p>
 
           </div>
 
-        ) : (
+        </div>
 
-          <p>
-            No previous medical records found.
-          </p>
+        <div className="patient-grid">
 
-        )
-      }
+          <div className="info-box">
 
+            <FaBirthdayCake />
+
+            <div>
+
+              <span>Age</span>
+
+              <strong>{patient.age || "N/A"}</strong>
+
+            </div>
+
+          </div>
+
+          <div className="info-box">
+
+            <FaTint />
+
+            <div>
+
+              <span>Blood Group</span>
+
+              <strong>{patient.bloodGroup || "N/A"}</strong>
+
+            </div>
+
+          </div>
+
+          <div className="info-box">
+
+            <FaPhoneAlt />
+
+            <div>
+
+              <span>Phone</span>
+
+              <strong>{patient.phoneNumber || "N/A"}</strong>
+
+            </div>
+
+          </div>
+
+          <div className="info-box">
+
+            <FaUser />
+
+            <div>
+
+              <span>Gender</span>
+
+              <strong>{patient.gender || "N/A"}</strong>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        {/* Medical History */}
+
+        <div className="records-section">
+
+          <h3>
+            <FaNotesMedical /> Hospital Records
+          </h3>
+
+          {/* If medicalHistory is an array */}
+
+          {Array.isArray(patient.medicalHistory) &&
+          patient.medicalHistory.length > 0 ? (
+
+            patient.medicalHistory.map((record, index) => (
+
+              <div
+                className="record-card"
+                key={index}
+              >
+
+                <h4>{record.disease}</h4>
+
+                <p>
+
+                  <FaUserMd />
+
+                  Doctor :
+                  {record.doctor}
+
+                </p>
+
+                <p>
+
+                  <FaCalendarAlt />
+
+                  {record.date}
+
+                </p>
+
+                <p>
+
+                  Treatment :
+                  {record.treatment}
+
+                </p>
+
+              </div>
+
+            ))
+
+          ) : typeof patient.medicalHistory === "string" ? (
+
+            <div className="record-card">
+
+              <p>{patient.medicalHistory}</p>
+
+            </div>
+
+          ) : (
+
+            <div className="record-card">
+
+              <p>No previous hospital records found.</p>
+
+            </div>
+
+          )}
+
+        </div>
+
+      </div>
 
     </div>
   );

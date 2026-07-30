@@ -29,18 +29,20 @@ router.get("/requests", async (req, res) => {
                     emergencyUsers.push({
 
                         uid,
-                        name: patient.fullName,
+                        fullName: patient.fullName,
                         age: patient.age,
                         bloodGroup: patient.bloodGroup,
-                        phone: patient.phoneNumber,
+                        phoneNumber: patient.phoneNumber,
+                        latitude: requests[uid].latitude,
+                        longitude: requests[uid].longitude,
                         medicalHistory: patient.medicalHistory || [],
                         timestamp: requests[uid].timestamp
 
-});
+                    });
                 }
             }
         }
-
+        console.log(emergencyUsers);
         res.json(emergencyUsers);
 
     } catch (error) {
