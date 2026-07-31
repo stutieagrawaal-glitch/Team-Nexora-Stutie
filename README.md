@@ -1,92 +1,111 @@
-# Team-Nexora-Stutie
 # SAHARA
 
 **Smart AI-enabled Healthcare Assistance & Rapid Aid**
 
-SAHARA is a healthcare assistance application designed to provide immediate emergency support for senior citizens. The application aims to reduce emergency response time by enabling elderly users to request help with a single tap while automatically sharing their live location, essential medical information, and emergency contact details with hospitals and caregivers.
+SAHARA is an AI-powered emergency healthcare assistance platform designed to provide rapid medical support for senior citizens during emergencies. The application enables elderly users to request immediate help through a simple one-tap SOS system while automatically sharing their live location, essential medical information, and emergency contact details with hospitals and caregivers.
 
-The project focuses on simplicity, accessibility, and reliability, ensuring that senior citizens can use the application with minimal effort during stressful situations.
+Designed with accessibility as its core principle, SAHARA offers a clean and intuitive interface that allows elderly users to interact with the application effortlessly during critical situations.
 
 ---
 
 ## Problem Statement
 
-Senior citizens often face medical emergencies when they are alone. In many cases, valuable time is lost while contacting family members, locating the patient, or collecting essential medical information before treatment begins.
+India's growing elderly population often faces difficulties in accessing immediate medical assistance during emergencies. Senior citizens living alone may struggle to contact hospitals quickly during situations such as heart attacks, strokes, falls, or other medical emergencies.
 
-SAHARA addresses this challenge by providing a fast and accessible emergency response system that connects users directly with healthcare providers.
-
----
-
-## Features
-
-- Mobile Number Authentication with OTP Verification
-- Elderly-friendly minimal user interface
-- Secure user registration
-- Personal profile management
-- Storage of essential medical information
-- Live GPS location sharing during emergencies
-- One-tap SOS emergency request
-- Emergency contact integration
-- Hospital dashboard for receiving SOS alerts
-- Real-time patient location tracking
-- Quick access to patient's medical history
-- Secure cloud database for user information
+Traditional emergency response methods frequently involve multiple phone calls and delays, reducing the chances of timely treatment. SAHARA addresses this challenge by providing a one-touch emergency assistance platform that instantly connects patients with hospitals and caregivers.
 
 ---
 
-## User Registration Flow
+## Objectives
+
+- Reduce emergency response time.
+- Provide instant access to patient medical information.
+- Improve communication between patients, hospitals, and caregivers.
+- Enable elderly users to request help with minimal interaction.
+- Utilize AI to assist hospitals in prioritizing emergency cases.
+
+---
+
+## Key Features
+
+### User Module
+
+- Mobile Number Authentication using OTP
+- Secure User Registration
+- Personal Profile Management
+- Medical History Management
+- Emergency Contact Registration
+- One-Tap SOS Emergency Button
+- Live GPS Location Sharing
+
+### Hospital Dashboard
+
+- Real-time SOS Notifications
+- Patient Information Display
+- Live Patient Location
+- AI-Assisted Emergency Severity Assessment
+- Ambulance Dispatch Support
+
+### Caregiver Module
+
+- Instant SOS Alerts
+- Live Location Updates
+- Emergency Status Tracking
+
+---
+
+## AI Integration
+
+SAHARA incorporates Artificial Intelligence to assist healthcare providers during emergencies.
+
+### AI Emergency Severity Assessment
+
+When an SOS request is triggered, the AI analyzes the emergency details and categorizes the situation based on severity, enabling hospitals to prioritize critical cases efficiently.
+
+Benefits include:
+
+- Faster emergency triage
+- Improved resource allocation
+- Reduced response time
+- Better decision-making for hospitals
+
+---
+
+## Methodology
+
+1. User registers using mobile number and OTP authentication.
+2. User enters essential medical details.
+3. Patient information is securely stored in Firebase.
+4. User activates the SOS button during an emergency.
+5. Live GPS location is captured automatically.
+6. AI assesses the severity of the emergency.
+7. Hospital dashboard receives patient information and location.
+8. Ambulance is dispatched.
+9. Registered family members receive emergency notifications.
+
+---
+
+## System Architecture
 
 ```
-Splash Screen
-      │
-      ▼
-Mobile Number Entry
-      │
-      ▼
-OTP Verification
-      │
-      ▼
-Basic Details Form
-      │
-      ▼
-Home Dashboard
-```
-
----
-
-## Information Collected
-
-After successful OTP verification, users provide:
-
-- Full Name
-- Age
-- Blood Group
-- Past Medical History
-- Emergency Contact Number
-
-This information is securely stored and shared only during emergencies.
-
----
-
-## Emergency Workflow
-
-```
-User presses SOS Button
-          │
-          ▼
-Live Location Captured
-          │
-          ▼
-Medical History Retrieved
-          │
-          ▼
-Emergency Alert Generated
-          │
-          ▼
-Hospital Dashboard Receives Alert
-          │
-          ▼
-Emergency Contact Notified
+Android Application
+        │
+        ▼
+Firebase Authentication
+        │
+        ▼
+Cloud Firestore
+Realtime Database
+        │
+ ┌──────┴─────────┐
+ │                │
+ ▼                ▼
+Hospital      Caregiver
+Dashboard     Notifications
+        │
+        ▼
+Google Maps API
+Live Location Services
 ```
 
 ---
@@ -95,75 +114,119 @@ Emergency Contact Notified
 
 ### Frontend
 
-- Flutter
-- Dart
+- Android (Kotlin)
+- Jetpack Compose
 
 ### Backend
 
 - Firebase Authentication
 - Cloud Firestore
-- Firebase Cloud Messaging
+- Firebase Realtime Database
 
 ### APIs
 
 - Google Maps API
-- Geolocation Services
-- OTP Authentication
+- GPS Location Services
+
+### AI
+
+- AI-based Emergency Severity Assessment
+
+---
+
+## Implementation Workflow
+
+```
+User Registration
+        │
+        ▼
+OTP Verification
+        │
+        ▼
+Medical Details Registration
+        │
+        ▼
+Secure Cloud Storage
+        │
+        ▼
+One-Tap SOS Activation
+        │
+        ▼
+Live Location Captured
+        │
+        ▼
+AI Severity Assessment
+        │
+        ▼
+Hospital Dashboard Alerted
+        │
+        ├────────► Ambulance Dispatch
+        │
+        └────────► Family Notification
+```
 
 ---
 
 ## Project Structure
 
 ```
-lib/
+app/
 │
-├── screens/
-│   ├── splash_screen.dart
-│   ├── login_screen.dart
-│   ├── otp_screen.dart
-│   ├── basic_details_screen.dart
-│   ├── home_screen.dart
-│   ├── sos_screen.dart
-│   └── profile_screen.dart
+├── authentication/
 │
-├── widgets/
+├── ui/
+│   ├── Login
+│   ├── OTP Verification
+│   ├── Registration
+│   ├── Dashboard
+│   └── SOS
 │
-├── models/
+├── firebase/
 │
-├── services/
-│   ├── auth_service.dart
-│   ├── firestore_service.dart
-│   ├── location_service.dart
-│   └── notification_service.dart
+├── location/
 │
-├── utils/
+├── hospital_dashboard/
 │
-└── main.dart
+├── caregivers/
+│
+├── ai/
+│
+└── utilities/
 ```
 
 ---
 
-## Key Objectives
+## Benefits
 
-- Reduce emergency response time
-- Improve accessibility for senior citizens
-- Provide accurate patient information instantly
-- Enable faster hospital response
-- Improve communication between patients, caregivers, and hospitals
+- Faster emergency response
+- Immediate hospital notification
+- Live patient tracking
+- AI-assisted emergency prioritization
+- Improved communication with caregivers
+- Elderly-friendly interface
+- Secure storage of medical records
 
 ---
 
-## Future Enhancements
+## Challenges
 
-- Voice-assisted navigation
-- Fall detection using AI
+- Dependence on stable internet connectivity
+- Smartphone accessibility among senior citizens
+- Data privacy and security concerns
+- Hospital system integration
+- GPS limitations in indoor environments
+
+---
+
+## Future Scope
+
+- Voice-based SOS activation
 - Wearable device integration
-- Video consultation during emergencies
+- Fall detection using smartphone sensors
 - Medication reminders
-- Health report generation
 - Multi-language support
-- Offline emergency mode
-- AI-powered health monitoring
+- Electronic Health Record (EHR) integration
+- Predictive health analytics
 
 ---
 
@@ -184,42 +247,42 @@ cd SAHARA
 Install dependencies
 
 ```bash
-flutter pub get
+./gradlew build
 ```
 
 Run the application
 
 ```bash
-flutter run
+./gradlew installDebug
 ```
 
 ---
 
-## Contributors
+## Team
 
-- Vanya Kapoor
-- stutie agrawaal
-- shreyash bhere
-- punya prasun
-- yuvraj narode
+**Team Name:** NEXORA
 
+Project:
+**SAHARA - Smart AI-enabled Healthcare Assistance & Rapid Aid**
 
 ---
 
 ## License
 
-This project is developed for educational and hackathon purposes.
+This project has been developed for academic and hackathon purposes.
 
 ---
 
 ## Acknowledgements
 
+- Android Developers
+- Jetpack Compose
 - Firebase
-- Flutter
 - Google Maps Platform
+- World Health Organization (WHO)
 
 ---
 
 ## Vision
 
-To build a reliable, accessible, and intelligent emergency healthcare system that empowers senior citizens to receive immediate assistance when they need it the most.
+To create a secure, intelligent, and accessible emergency healthcare platform that empowers senior citizens to receive timely medical assistance while enabling hospitals to respond more efficiently through AI-assisted decision support.
