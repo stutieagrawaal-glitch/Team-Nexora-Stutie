@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "../services/api";
+import logo from "../assets/logo.png";
 import EmergencyCard from "../components/EmergencyCard";
 import {
     FaHospital,
@@ -60,7 +61,7 @@ function Dashboard() {
                 <div className="hospital">
 
                     <div className="hospital-logo">
-                        <FaHospital />
+                        <img src={logo} alt="Sahara Hospital Logo" />
                     </div>
 
                     <div>

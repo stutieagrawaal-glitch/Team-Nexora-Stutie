@@ -1,19 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
-    FaUser,
     FaPhoneAlt,
     FaTint,
     FaBirthdayCake,
     FaHistory,
     FaCheckCircle,
     FaClock,
-    FaMapMarkerAlt
+    FaMapMarkerAlt,
 } from "react-icons/fa";
 
 function EmergencyCard({ user, resolve }) {
-    console.log("EmergencyCard user:", user);
     const [showHistory, setShowHistory] = useState(false);
-    // console.log(user);
 
     return (
         <>
@@ -22,7 +19,7 @@ function EmergencyCard({ user, resolve }) {
                 <div className="card-top">
 
                     <span className="emergency-badge">
-                        🚨 EMERGENCY
+                        EMERGENCY
                     </span>
 
                     <span className="time">
@@ -32,11 +29,9 @@ function EmergencyCard({ user, resolve }) {
                 </div>
 
                 <div className="patient-avatar">
-
                     {user.fullName
                         ? user.fullName.charAt(0).toUpperCase()
                         : "P"}
-
                 </div>
 
                 <h3>{user.fullName}</h3>
@@ -57,14 +52,41 @@ function EmergencyCard({ user, resolve }) {
                         <FaPhoneAlt />
                         <span>{user.phoneNumber}</span>
                     </p>
-                    <a
-                        className="location-btn"
-                        href={`https://www.google.com/maps?q=${user.latitude},${user.longitude}`}
-                        target="_blank"
-                        rel="noreferrer"
-                    >
-                        📍 View Location
-                    </a>
+
+                    <p>
+                        <FaMapMarkerAlt />
+                        <span>
+                            {user.latitude && user.longitude
+                                ? "Location Available"
+                                : "Location Unavailable"}
+                        </span>
+                    </p>
+
+                    {/* <p>
+                        ETA
+
+                        <span
+                            style={{
+                                color: "#16a34a",
+                                fontWeight: "bold",
+                                marginLeft: "8px"
+                            }}
+                        >
+                            {user.eta} min
+                        </span>
+                    </p> */}
+
+                    {user.latitude && user.longitude && (
+                        <a
+                            href={`https://www.google.com/maps?q=${user.latitude},${user.longitude}`}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="location-btn"
+                        >
+                            <FaMapMarkerAlt />
+                            View Live Location
+                        </a>
+                    )}
 
                 </div>
 
@@ -87,6 +109,7 @@ function EmergencyCard({ user, resolve }) {
                     </button>
 
                 </div>
+
             </div>
 
             {showHistory && (
@@ -94,7 +117,6 @@ function EmergencyCard({ user, resolve }) {
                     className="history-overlay"
                     onClick={() => setShowHistory(false)}
                 >
-
                     <div
                         className="history-modal"
                         onClick={(e) => e.stopPropagation()}
@@ -128,11 +150,13 @@ function EmergencyCard({ user, resolve }) {
 
                             <div className="history-box">
 
-                                {user.medicalHistory ? (
-                                    Array.isArray(user.medicalHistory) ? (
+                                {Array.isArray(user.medicalHistory) ? (
+                                    user.medicalHistory.length > 0 ? (
                                         user.medicalHistory.map((record, index) => (
-                                            <div className="history-item" key={index}>
-
+                                            <div
+                                                key={index}
+                                                className="history-item"
+                                            >
                                                 <h4>{record.disease}</h4>
 
                                                 <p>
@@ -140,8 +164,7 @@ function EmergencyCard({ user, resolve }) {
                                                 </p>
 
                                                 <p>
-                                                    <strong>Treatment:</strong>{" "}
-                                                    {record.treatment}
+                                                    <strong>Treatment:</strong> {record.treatment}
                                                 </p>
 
                                                 <p>
@@ -151,10 +174,10 @@ function EmergencyCard({ user, resolve }) {
                                             </div>
                                         ))
                                     ) : (
-                                        <p>{user.medicalHistory}</p>
+                                        <p>No medical records.</p>
                                     )
                                 ) : (
-                                    <p>No previous medical records available.</p>
+                                    <p>{user.medicalHistory}</p>
                                 )}
 
                             </div>
@@ -169,7 +192,6 @@ function EmergencyCard({ user, resolve }) {
                         </button>
 
                     </div>
-
                 </div>
             )}
         </>

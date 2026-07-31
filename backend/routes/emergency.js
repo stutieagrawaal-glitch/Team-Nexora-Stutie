@@ -3,6 +3,7 @@ const { database, firestore } = require("../firebase");
 
 router.get("/requests", async (req, res) => {
     try {
+
         const snapshot = await database.ref("users").get();
         const requests = snapshot.val();
 
@@ -22,54 +23,82 @@ router.get("/requests", async (req, res) => {
                     .get();
 
                 if (doc.exists) {
-                    const patient = doc.data();
 
-                    console.log(patient);
+                    const patient = doc.data();
 
                     emergencyUsers.push({
 
                         uid,
+
                         fullName: patient.fullName,
-                        age: patient.age,
-                        bloodGroup: patient.bloodGroup,
+
                         phoneNumber: patient.phoneNumber,
+
+                        age: patient.age,
+
+                        bloodGroup: patient.bloodGroup,
+
+                        medicalHistory: patient.medicalHistory || "",
+
                         latitude: requests[uid].latitude,
+
                         longitude: requests[uid].longitude,
-                        medicalHistory: patient.medicalHistory || [],
+
+                        eta: requests[uid].eta || 0,
+
+                        distance: requests[uid].distance || 0,
+
                         timestamp: requests[uid].timestamp
 
                     });
+
                 }
+
             }
+
         }
-        console.log(emergencyUsers);
+
         res.json(emergencyUsers);
 
     } catch (error) {
+
         console.error(error);
+
         res.status(500).json({
             error: error.message
         });
+
     }
 });
 
 router.post("/resolve/:uid", async (req, res) => {
+
     try {
 
         await database.ref("users/" + req.params.uid).update({
+
             needHelp: false
+
         });
 
         res.json({
+
             success: true
+
         });
 
     } catch (error) {
+
         console.error(error);
+
         res.status(500).json({
+
             error: error.message
+
         });
+
     }
+
 });
 
 module.exports = router;
