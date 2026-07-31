@@ -1,8 +1,8 @@
 # SAHARA
 
-**Smart AI-enabled Healthcare Assistance & Rapid Aid**
+**Smart Assistance For Healthcare & Rapid Aid**
 
-SAHARA is an AI-powered emergency healthcare assistance platform designed to provide rapid medical support for senior citizens during emergencies. The application enables elderly users to request immediate help through a simple one-tap SOS system while automatically sharing their live location, essential medical information, and emergency contact details with hospitals and caregivers.
+SAHARA is an emergency healthcare assistance platform designed to provide rapid medical support for senior citizens during emergencies. The application enables elderly users to request immediate help through a simple one-tap SOS system while automatically sharing their live location, essential medical information, and emergency contact details with hospitals and caregivers.
 
 Designed with accessibility as its core principle, SAHARA offers a clean and intuitive interface that allows elderly users to interact with the application effortlessly during critical situations.
 
@@ -58,18 +58,6 @@ Traditional emergency response methods frequently involve multiple phone calls a
 
 SAHARA incorporates Artificial Intelligence to assist healthcare providers during emergencies.
 
-### AI Emergency Severity Assessment
-
-When an SOS request is triggered, the AI analyzes the emergency details and categorizes the situation based on severity, enabling hospitals to prioritize critical cases efficiently.
-
-Benefits include:
-
-- Faster emergency triage
-- Improved resource allocation
-- Reduced response time
-- Better decision-making for hospitals
-
----
 
 ## Methodology
 
@@ -128,9 +116,7 @@ Live Location Services
 - Google Maps API
 - GPS Location Services
 
-### AI
 
-- AI-based Emergency Severity Assessment
 
 ---
 
@@ -153,9 +139,7 @@ One-Tap SOS Activation
         │
         ▼
 Live Location Captured
-        │
-        ▼
-AI Severity Assessment
+
         │
         ▼
 Hospital Dashboard Alerted
@@ -188,8 +172,6 @@ app/
 ├── hospital_dashboard/
 │
 ├── caregivers/
-│
-├── ai/
 │
 └── utilities/
 ```
@@ -226,7 +208,8 @@ app/
 - Medication reminders
 - Multi-language support
 - Electronic Health Record (EHR) integration
-- Predictive health analytics
+- Predictive health analytic
+- AI Integration
 
 ---
 
@@ -261,9 +244,14 @@ Run the application
 ## Team
 
 **Team Name:** NEXORA
+Yuvraj Narode 25BCY10129
+Shreyash Bhere 25BCE10682
+Punya Parsoon 25BCE10774
+Stutie Agrawal 25BCE11395
+Vanya Kapoor 25BCE11325
 
 Project:
-**SAHARA - Smart AI-enabled Healthcare Assistance & Rapid Aid**
+**SAHARA - Smart Assistance For Healthcare & Rapid Aid**
 
 ---
 
